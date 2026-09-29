@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#121626">
+  <title>Calculadora web | Tarea 2</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page">
+    <header class="intro">
+      <span class="eyebrow">TAREA 02 · DESARROLLO WEB</span>
+      <h1>Una forma sencilla de<br><span>hacer las cuentas.</span></h1>
+      <p>Calcula, revisa tus resultados y continúa justo donde lo dejaste.</p>
+    </header>
+
+    <div class="workspace">
+      <section class="calculator panel" aria-label="Calculadora">
+        <div class="panel-heading">
+          <div class="brand-mark" aria-hidden="true">✳</div>
+          <div>
+            <span class="panel-kicker">CALCULADORA</span>
+            <h2>Operaciones básicas</h2>
+          </div>
+          <span class="live-badge"><span class="status-dot"></span> Lista</span>
+        </div>
+
+        <div class="display" aria-live="polite" aria-atomic="true">
+          <div id="expression" class="expression">&nbsp;</div>
+          <div id="result" class="result">0</div>
+        </div>
+
+        <div class="keypad" aria-label="Teclado de la calculadora">
+          <button type="button" class="key key-muted" data-action="clear" aria-label="Borrar todo">AC</button>
+          <button type="button" class="key key-muted" data-action="backspace" aria-label="Borrar último dígito">⌫</button>
+          <button type="button" class="key key-operator" data-action="operator" data-value="/" aria-label="Dividir">÷</button>
+          <button type="button" class="key key-operator" data-action="operator" data-value="*" aria-label="Multiplicar">×</button>
+
+          <button type="button" class="key" data-action="digit" data-value="7">7</button>
+          <button type="button" class="key" data-action="digit" data-value="8">8</button>
+          <button type="button" class="key" data-action="digit" data-value="9">9</button>
+          <button type="button" class="key key-operator" data-action="operator" data-value="-" aria-label="Restar">−</button>
+
+          <button type="button" class="key" data-action="digit" data-value="4">4</button>
+          <button type="button" class="key" data-action="digit" data-value="5">5</button>
+          <button type="button" class="key" data-action="digit" data-value="6">6</button>
+          <button type="button" class="key key-operator" data-action="operator" data-value="+" aria-label="Sumar">+</button>
+
+          <button type="button" class="key" data-action="digit" data-value="1">1</button>
+          <button type="button" class="key" data-action="digit" data-value="2">2</button>
+          <button type="button" class="key" data-action="digit" data-value="3">3</button>
+          <button type="button" class="key key-equals" data-action="equals" aria-label="Igual">=</button>
+
+          <button type="button" class="key key-zero" data-action="digit" data-value="0">0</button>
+          <button type="button" class="key" data-action="decimal" aria-label="Punto decimal">.</button>
+        </div>
+        <p id="message" class="message" role="status" aria-live="polite">También puedes usar tu teclado.</p>
+      </section>
+
+      <aside class="history panel" aria-label="Historial de operaciones">
+        <div class="history-heading">
+          <div>
+            <span class="panel-kicker">TUS CÁLCULOS</span>
+            <h2>Historial <span id="history-count" class="count">0</span></h2>
+          </div>
+          <button id="clear-history" type="button" class="clear-history" disabled>Eliminar todo</button>
+        </div>
+        <div id="history-empty" class="empty-state">
+          <div class="empty-icon" aria-hidden="true">↗</div>
+          <h3>Todo empieza con un número</h3>
+          <p>Las operaciones que realices aparecerán aquí y se guardarán en este navegador.</p>
+        </div>
+        <ol id="history-list" class="history-list" aria-label="Operaciones realizadas"></ol>
+        <div class="history-footer"><span class="storage-dot"></span> Guardado en este dispositivo</div>
+      </aside>
+    </div>
+    <footer class="page-footer">HTML5 · CSS3 · JavaScript ES5 · localStorage</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

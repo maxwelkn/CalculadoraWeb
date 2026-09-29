@@ -82,6 +82,7 @@
       deleteButton.setAttribute('data-index', String(index));
       deleteButton.setAttribute('aria-label', 'Eliminar operación ' + item.expression);
       deleteButton.textContent = '×';
+      deleteButton.addEventListener('click', deleteHistoryItem);
       textBox.appendChild(expression);
       textBox.appendChild(answer);
       row.appendChild(textBox);
@@ -94,6 +95,14 @@
     history.unshift({ expression: expression, result: result });
     renderHistory();
     saveHistory();
+  }
+
+  function deleteHistoryItem(event) {
+    var index = Number(event.currentTarget.getAttribute('data-index'));
+    if (isNaN(index) || index < 0 || index >= history.length) return;
+    history.splice(index, 1);
+    renderHistory();
+    if (saveHistory()) showMessage('Operación eliminada.', false);
   }
 
   function render() {
@@ -235,19 +244,9 @@
     if (saveHistory()) showMessage('Historial eliminado.', false);
   });
 
-  historyList.addEventListener('click', function (event) {
-    var button = event.target;
-    var index;
-    if (!button || button.tagName !== 'BUTTON') return;
-    index = Number(button.getAttribute('data-index'));
-    if (isNaN(index) || index < 0 || index >= history.length) return;
-    history.splice(index, 1);
-    renderHistory();
-    if (saveHistory()) showMessage('Operación eliminada.', false);
-  });
-
   document.addEventListener('keydown', function (event) {
     var key = event.key;
+    if (key === 'Enter' && event.target.tagName === 'BUTTON') return;
     if (/^[0-9]$/.test(key)) runAction('digit', key);
     else if (key === '.' || key === ',') runAction('decimal');
     else if (key === '+' || key === '-' || key === '*' || key === '/') runAction('operator', key);
